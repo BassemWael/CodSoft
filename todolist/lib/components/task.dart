@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:todolist/models/task.dart';
+import 'package:my_todo_list/models/task.dart';
 
 class Task extends StatefulWidget {
   const Task({

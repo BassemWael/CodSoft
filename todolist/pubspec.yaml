@@ -1,5 +1,4 @@
-name: todolist
-display-name: "To Do List"
+name: my_todo_list
 
 description: "To Do List"
 # The following line prevents the package from being accidentally published to

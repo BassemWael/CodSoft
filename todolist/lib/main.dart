@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:todolist/views/Intro_page.dart';
-import 'package:todolist/views/Home_page.dart';
+import 'package:my_todo_list/views/Intro_page.dart';
+import 'package:my_todo_list/views/Home_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
