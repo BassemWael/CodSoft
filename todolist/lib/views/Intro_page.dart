@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:app/views/Home_page.dart';
+import 'package:todolist/views/Home_page.dart';
 
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});

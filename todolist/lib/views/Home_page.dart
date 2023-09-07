@@ -1,7 +1,7 @@
-import 'package:app/components/task.dart';
+import 'package:todolist/components/task.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:app/models/task.dart';
+import 'package:todolist/models/task.dart';
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
