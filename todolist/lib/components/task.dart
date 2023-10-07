@@ -134,7 +134,7 @@ class _TaskState extends State<Task> {
                               ),
                             ),
                             Text(errorMessage,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color:
                                         Colors.red)), // Display error message
                           ],

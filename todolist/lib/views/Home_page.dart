@@ -5,7 +5,6 @@ import 'package:my_todo_list/models/task.dart';
 import 'dart:convert';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key});
   final GlobalKey<_HomePageState> homePageKey = GlobalKey<_HomePageState>();
   @override
   _HomePageState createState() => _HomePageState();
@@ -18,7 +17,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    // Load tasks from SharedPreferences when the app starts
     loadTasks();
   }
 
@@ -32,7 +30,6 @@ class _HomePageState extends State<HomePage> {
         tasklist = taskList.map((taskMap) => Tasks.fromJson(taskMap)).toList();
       });
     } else {
-      // Initialize tasklist with an empty list if there are no saved tasks
       tasklist = [];
     }
   }
@@ -44,7 +41,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   void addTask() {
-    // Get the task name and description from the text fields.
     String taskName = textController.text;
     String taskDescription = textController2.text;
 
@@ -52,20 +48,14 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         errorMessage = "Task name cannot be empty";
       });
-      return; // Don't proceed further if the task name is empty
+      return;
     }
-
-    // Create a new task object with the checkbox state set to false (unchecked).
     Tasks newTask =
         Tasks(name: taskName, description: taskDescription, ischecked: false);
-
-    // Add the new task to the list of tasks.
     tasklist.add(newTask);
 
-    // Save the updated list of tasks.
     saveTasks();
 
-    // Clear text fields and error message
     textController.clear();
     textController2.clear();
     setState(() {
@@ -77,10 +67,8 @@ class _HomePageState extends State<HomePage> {
     // Update the task's checkbox state
     task.ischecked = isChecked;
 
-    // Save the updated list of tasks when a task's checkbox changes
     saveTasks();
 
-    // Refresh the list of tasks.
     setState(() {});
   }
 
@@ -113,30 +101,25 @@ class _HomePageState extends State<HomePage> {
           itemCount: tasklist.length,
           itemBuilder: (context, index) {
             return Dismissible(
-              key: UniqueKey(), // Ensure each item has a unique key.
+              key: UniqueKey(),
               onDismissed: (direction) {
-                // Remove the task from the list when it's dismissed.
                 setState(() {
                   tasklist.removeAt(index);
                 });
-                // Save the updated list of tasks.
                 saveTasks();
               },
               background: Container(
-                color: Colors
-                    .orange, // Customize the background color when swiping.
+                color: Colors.orange,
                 alignment: Alignment.centerRight,
-                padding: EdgeInsets.only(right: 20.0),
-                child: Icon(Icons.delete, color: Colors.white),
+                padding: const EdgeInsets.only(right: 20.0),
+                child: const Icon(Icons.delete, color: Colors.white),
               ),
               child: Task(
                 task: tasklist[index],
                 onCheckboxChanged: (isChecked) {
-                  // Pass the callback function to the Task widget
                   onTaskCheckboxChanged(isChecked, tasklist[index]);
                 },
                 onTaskEdit: (editedTask) {
-                  // Handle task editing here, and save the updated tasks
                   saveTasks();
                 },
               ),
@@ -145,7 +128,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Color.fromARGB(255, 239, 139, 51),
+          backgroundColor: const Color.fromARGB(255, 239, 139, 51),
           onPressed: () {
             showDialog(
               context: context,
@@ -178,8 +161,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       Text(errorMessage,
-                          style: TextStyle(
-                              color: Colors.red)), // Display error message
+                          style: const TextStyle(color: Colors.red)),
                     ],
                   ),
                   actions: [
@@ -192,7 +174,6 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       onPressed: () {
-                        // Add the new task and refresh the list.
                         addTask();
                         Navigator.of(context).pop();
                       },
@@ -214,7 +195,7 @@ List<Widget> getList(List<Tasks> tasklist, Function(bool) onCheckboxChanged,
     itemslist.add(Task(
       task: tasklist[i],
       onCheckboxChanged: onCheckboxChanged,
-      onTaskEdit: onTaskEdit, // Pass the onTaskEdit callback here
+      onTaskEdit: onTaskEdit,
     ));
   }
   return itemslist;
